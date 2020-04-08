@@ -10,7 +10,6 @@ namespace Infrastructure.Context
         {
         }
         
-        public DbSet<Category> Categories { get; set; }
         public DbSet<HouseholdItem> HouseholdItems { get; set; }
         public DbSet<User> Users { get; set; }
 

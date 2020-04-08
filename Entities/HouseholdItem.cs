@@ -2,29 +2,24 @@
 
  namespace Infrastructure.Entities
 {
+    // TODO - all item should have a client, must be implemented with authentication
     /// <summary>
     /// Describes the household item the insurance customer
     /// wants to insure. 
-    /// </summary>
-    /// TODO - From DDD point of view the HouseholdItem is not the same for
-    /// a client persona and an insurer persona. These are completely different
-    /// bounded contexts and should be separate. For now this will be shared.
+    /// </summary>    
     public class HouseholdItem
     {
         public Guid Id { get; set; }
-
+        
         /// <summary>
-        /// The client who created the household item
+        /// Represents the name of the item
         /// </summary>
-        // TODO - If a microservice is created use Client/Insurer instead
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; }
-
+        public string Name { get; set; }
+        
         /// <summary>
         /// Represents the item category
         /// </summary>
-        public Guid CategoryId { get; set; }
-        public virtual Category Category { get; set; }
+        public string Category { get; set; }
 
         /// <summary>
         /// Represents the item cost of replacement
