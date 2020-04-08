@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Infrastructure.Entities;
 
 namespace Infrastructure.Interfaces
 {
     public interface IHouseholdItemRepository
     {
-        IEnumerable<HouseholdItem> GetAll();
-        HouseholdItem GetById(int householdItemId);
+        Task<IEnumerable<HouseholdItem>> GetAllAsync();
+        Task<HouseholdItem> GetByIdAsync(Guid householdItemId);
         void Insert(HouseholdItem householdItem);
         void Update(HouseholdItem householdItem);
-        void Delete(int householdItemId);
-        void Save();
+        Task DeleteAsync(Guid householdItemId);
+        Task SaveAsync();
     }
 }

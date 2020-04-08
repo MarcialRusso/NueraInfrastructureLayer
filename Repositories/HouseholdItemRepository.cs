@@ -1,39 +1,52 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Infrastructure.Context;
 using Infrastructure.Entities;
 using Infrastructure.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
     public class HouseholdItemRepository : IHouseholdItemRepository
     {
-        public IEnumerable<HouseholdItem> GetAll()
+        private NueraContext _context;
+
+        public HouseholdItemRepository(NueraContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
         }
 
-        public HouseholdItem GetById(int householdItemId)
+        public async Task<IEnumerable<HouseholdItem>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            return await _context.HouseholdItems.ToListAsync();
+        }
+
+        public Task<HouseholdItem> GetByIdAsync(Guid householdItemId)
+        {
+            return _context.HouseholdItems.FirstOrDefaultAsync(h => h.Id == householdItemId);
         }
 
         public void Insert(HouseholdItem householdItem)
         {
-            throw new System.NotImplementedException();
+            _context.HouseholdItems.Add(householdItem);
         }
 
         public void Update(HouseholdItem householdItem)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(householdItem).State = EntityState.Modified;
         }
 
-        public void Delete(int householdItemId)
+        public async Task DeleteAsync(Guid householdItemId)
         {
-            throw new System.NotImplementedException();
+            var item = await GetByIdAsync(householdItemId);
+            _context.HouseholdItems.Remove(item);
         }
 
-        public void Save()
+        public async Task SaveAsync()
         {
-            throw new System.NotImplementedException();
+            await _context.SaveChangesAsync();
         }
     }
 }
