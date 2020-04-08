@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
+    // TODO - document repository
     public class HouseholdItemRepository : IHouseholdItemRepository
     {
         private NueraContext _context;
