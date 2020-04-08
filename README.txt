@@ -1,0 +1,1 @@
+﻿- Entities currently do not have any configurations or filters
