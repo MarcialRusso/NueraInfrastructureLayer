@@ -43,9 +43,9 @@ namespace Infrastructure.Repositories
             _context.HouseholdItems.Remove(item);
         }
 
-        public async Task SaveAsync()
+        public Task SaveAsync()
         {
-            await _context.SaveChangesAsync();
+            return _context.SaveChangesAsync();
         }
     }
 }
