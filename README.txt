@@ -11,3 +11,4 @@ update-database
 
 Project Techdebt
 - Entities currently do not have any configurations or filters
+- Create Infrastructure.Unit.Test project and implement test for HouseholdItemRepository
