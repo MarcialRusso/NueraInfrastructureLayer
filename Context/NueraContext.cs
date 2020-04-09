@@ -18,5 +18,14 @@ namespace Infrastructure.Context
             builder.Entity<Client>();
             base.OnModelCreating(builder);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Data Source=.; Initial Catalog=Nuera; Database=EFProviders.InMemory; Integrated Security=True;ConnectRetryCount=0");
+                    //"Server=(localdb)\mssqllocaldb;Trusted_Connection=True;ConnectRetryCount=0");
+            }
+        }
     }
 }
